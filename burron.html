@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xona Band Qilish</title>
+  <meta name="description" content="Al-Xorazmiy mehmonxonasida xona band qilish uchun zamonaviy va qulay forma.">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="stylesheet" href="burron.css">
+  <link rel="stylesheet" href="burron-advanced.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #42b0b2 0%, #6476b8 100%);
+      min-height: 100vh;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #56889e;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .navbar a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        padding: 10px 5px;
+      }
+      .navbar a {
+        margin-left: 0;
+        margin-right: 10px;
+        display: inline-block;
+        margin-top: 8px;
+      }
+    }
+    .booking-container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 6px 32px rgba(87,74,152,0.13);
+      padding: 32px 28px 24px 28px;
+      max-width: 400px;
+      width: 100%;
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .booking-container h2 {
+      text-align: center;
+      color: #42b0b2;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-weight: 500;
+      color: #2d3651;
+    }
+    input, select, textarea {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #bfc9e0;
+      font-size: 1rem;
+      background: #f8fafc;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border: 1.5px solid #42b0b2;
+      outline: none;
+      background: #fff;
+    }
+    .room-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .room-radio {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #e0e7ff;
+      border-radius: 7px;
+      padding: 7px 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .room-radio input[type="radio"] {
+      accent-color: #42b0b2;
+      width: 18px;
+      height: 18px;
+    }
+    .room-radio.selected {
+      background: #42b0b2;
+      color: #fff;
+    }
+    .price {
+      font-weight: bold;
+      color: #ff5722;
+      margin-left: auto;
+      font-size: 1.1em;
+    }
+    .submit-btn {
+      background: linear-gradient(90deg, #42b0b2 60%, #6476b8 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(87,74,152,0.10);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .submit-btn:hover {
+      background: #56889e;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 600px) {
+      .booking-container {
+        padding: 18px 4vw 14px 4vw;
+        max-width: 98vw;
+      }
+      .booking-container h2 {
+        font-size: 1.3rem;
+      }
+      .submit-btn {
+        font-size: 1rem;
+        padding: 11px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">Al-Xorazmiy Hotel</div><div></div>
+    <a href="index.html" class="back-btn" id="backBtn" aria-label="Orqaga qaytish" style="display:none">← Orqaga</a>
+    <div class="navbar-links" id="navbarLinks">
+      <a href="#info">Ma'lumot</a>
+      <a href="#rooms">Xonalar</a>
+      <a href="#contact">Aloqa</a>
+    </div>
+  </div>
+  <form class="booking-container" id="bookingForm">
+    <h2>Xona Band Qilish</h2>
+    <div class="form-group guest1-fields">
+      <label for="name">Ism</label>
+      <input type="text" id="name" name="name" required placeholder="Ismingiz">
+      <div class="error-msg" id="err-name"></div>
+    </div>
+    <div class="form-group guest1-fields">
+      <label for="surname">Familiya</label>
+      <input type="text" id="surname" name="surname" required placeholder="Familiyangiz">
+      <div class="error-msg" id="err-surname"></div>
+    </div>
+    <div class="form-group guest2-fields" style="display:none">
+      <label for="name2">2-kishi ismi</label>
+      <input type="text" id="name2" name="name2" placeholder="2-kishi ismi">
+      <div class="error-msg" id="err-name2"></div>
+    </div>
+    <div class="form-group guest2-fields" style="display:none">
+      <label for="surname2">2-kishi familiyasi</label>
+      <input type="text" id="surname2" name="surname2" placeholder="2-kishi familiyasi">
+      <div class="error-msg" id="err-surname2"></div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Telefon raqam</label>
+      <div class="phone-input-group">
+        <div class="country-dropdown" id="countryDropdown">
+          <div class="selected-country" id="selectedCountry">
+            <span class="flag">🇺🇿</span>
+            <span class="code">+998</span>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="country-list" id="countryList">
+            <!-- Countries will be populated by JS -->
+          </div>
+        </div>
+        <input type="tel" id="phone" name="phone" required placeholder="90 123-45-67">
+      </div>
+      <div class="error-msg" id="err-phone"></div>
+    </div>
+    <div class="form-group">
+      <label for="roomType">Xona turi va narxi</label>
+      <div class="room-select-group">
+        <input type="text" id="roomType" name="roomType" readonly required placeholder="Xona turini tanlang" autocomplete="off">
+        <div class="room-select-arrow"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="extra">Qo'shimcha ma'lumot</label>
+      <textarea id="extra" name="extra" rows="2" aria-placeholder="Iltimoslaringiz yoki izoh..."></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Band Qilish</button>
+  </form>
+
+  <!-- Room select modal -->
+  <div class="room-modal" id="roomModal">
+    <div class="room-modal-content">
+      <div class="room-modal-title">Xona turini tanlang</div>
+      <div class="room-modal-list" id="roomModalList">
+        <!-- Room options will be populated by JS -->
+      </div>
+      <button class="room-modal-close" id="roomModalClose">Yopish</button>
+    </div>
+  </div>
+
+  <script src="burron.js"></script>
+  <script src="burron-advanced.js"></script>
+  <script>
+    // Mobile/desktop navbar logic
+    function updateNavbar() {
+      if(window.innerWidth < 700) {
+        document.getElementById('backBtn').style.display = 'inline-block';
+        document.getElementById('navbarLinks').style.display = 'none';
+      } else {
+        document.getElementById('backBtn').style.display = 'none';
+        document.getElementById('navbarLinks').style.display = 'flex';
+      }
+    }
+    window.addEventListener('resize', updateNavbar);
+    updateNavbar();
+  </script>
+</body>
+</html>

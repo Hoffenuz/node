@@ -1,0 +1,244 @@
+/* Responsive navbar and booking form improvements */
+.navbar {
+  width: 100vw;
+  min-width: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #42b0b2;
+  box-shadow: 0 2px 12px rgba(87,74,152,0.07);
+}
+.navbar .logo {
+  font-size: 1.4em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  flex: 1 1 auto;
+  white-space: nowrap;
+  padding-right: 10px;
+  color: #fff;
+  text-shadow: 0 2px 8px #42b0b255;
+}
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    position: relative;
+    padding: 10px 2vw;
+  }
+  .navbar .logo {
+    flex: 1 1 auto;
+    padding-right: 10px;
+    font-size: 1.1em;
+  }
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    background: #56889e;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    box-shadow: 0 4px 16px rgba(87,74,152,0.13);
+    z-index: 200;
+  }
+  .navbar-links.open {
+    display: flex;
+  }
+  .navbar .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2em;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .back-btn {
+    display: inline-block !important;
+    position: static;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.1em;
+    z-index: 101;
+    margin-right: 4vw;
+    vertical-align: middle;
+  }
+  .booking-container {
+    margin: 12px auto;
+    max-width: 99vw;
+    padding: 10px 2vw 8px 2vw;
+    border-radius: 16px;
+  }
+}
+@media (min-width: 701px) {
+  .navbar {
+    padding: 15px 8vw;
+    width: 100vw;
+  }
+  .navbar .menu-toggle {
+    display: none;
+  }
+  .back-btn {
+    display: none !important;
+  }
+}
+
+/* Booking form centering and max width */
+.booking-container {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(87,74,152,0.13);
+  padding: 36px 28px 28px 28px;
+  max-width: 430px;
+  width: 100%;
+  margin: 38px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  border: 1.5px solid #e0e7ff;
+}
+@media (max-width: 600px) {
+  .booking-container {
+    margin: 18px auto;
+    max-width: 98vw;
+    padding: 12px 2vw 10px 2vw;
+  }
+}
+
+/* Modal full width on mobile */
+@media (max-width: 500px) {
+  .room-modal-content {
+    min-width: 0;
+    width: 98vw;
+    padding: 10px 2vw 8px 2vw;
+  }
+}
+
+/* Extra polish for mobile and focus */
+@media (max-width: 400px) {
+  .booking-container {
+    padding: 8px 2vw 8px 2vw;
+    font-size: 0.97rem;
+  }
+  .form-group label {
+    font-size: 0.98em;
+  }
+  .submit-btn {
+    font-size: 0.97em;
+  }
+}
+input:focus, textarea:focus, select:focus {
+  border: 1.5px solid #42b0b2;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 2px #42b0b233;
+}
+.submit-btn:active {
+  background: #42b0b2;
+}
+
+.back-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 7px 24px 7px 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  margin-left: 0;
+  margin-right: 4vw;
+  position: static;
+  white-space: nowrap;
+}
+.back-btn:hover {
+  background: #56889e;
+  color: #fff;
+  text-decoration: none;
+}
+
+.error-msg {
+  color: #e53935;
+  font-size: 0.97em;
+  margin-top: 3px;
+  min-height: 18px;
+  line-height: 1.2;
+  font-weight: 500;
+  display: block;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Inter', 'Roboto', Arial, sans-serif;
+  background: linear-gradient(120deg, #e0e7ff 0%, #42b0b2 100%);
+  min-height: 100vh;
+  color: #222;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-bottom: 6px;
+}
+input, select, textarea {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #bfc9e0;
+  font-size: 1rem;
+  background: #f8fafc;
+  transition: border 0.2s, box-shadow 0.2s;
+  margin-top: 0px;
+}
+textarea {
+  min-height: 80px;
+  max-height: 220px;
+  resize: vertical;
+  font-size: 1rem;
+}
+#extra {
+  min-height: 110px;
+  font-size: 1.05em;
+}
+#extra::placeholder, textarea::placeholder {
+  color: #42b0b2;
+  font-style: italic;
+  font-size: 1.08em;
+  opacity: 0.85;
+  letter-spacing: 0.2px;
+}
+label {
+  font-weight: 500;
+  color: #2d3651;
+  margin-bottom: 0;
+}
+.submit-btn {
+  background: linear-gradient(90deg, #42b0b2 60%, #6476b8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 0;
+  font-size: 1.13rem;
+  font-weight: bold;
+  margin-top: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(87,74,152,0.10);
+  transition: background 0.2s, transform 0.2s;
+  letter-spacing: 0.5px;
+}
+.submit-btn:hover {
+  background: #56889e;
+  transform: translateY(-2px);
+} 
