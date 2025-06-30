@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.style.zIndex = 2000;
     modal.innerHTML = `<div style="background:#fff;padding:32px 24px;border-radius:16px;max-width:90vw;text-align:center;box-shadow:0 6px 32px rgba(87,74,152,0.13);font-size:1.1em;">
       <div style='font-size:2.2em;color:#42b0b2;margin-bottom:10px;'>✔</div>
-      <div>Ma'lumot yuborildi!<br>Admin tez orada siz bilan bog'lanadi.</div>
-      <button style='margin-top:18px;padding:8px 24px;background:#42b0b2;color:#fff;border:none;border-radius:8px;font-size:1em;cursor:pointer;' onclick='this.closest("div").parentNode.remove()'>Yopish</button>
+      <div style="color: #000;">Ma'lumot yuborildi!<br>Admin tez orada siz bilan bog'lanadi.</div>
+      <button style='margin-top:18px;padding:8px 24px;background:#42b0b2;color: #fff;border:none;border-radius:8px;font-size:1em;cursor:pointer;' onclick='this.closest("div").parentNode.remove()'>Yopish</button>
     </div>`;
     document.body.appendChild(modal);
   }

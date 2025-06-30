@@ -11,156 +11,384 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(120deg, #42b0b2 0%, #6476b8 100%);
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      color: #222;
+      color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      line-height: 1.6;
     }
+    
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
-      background-color: #56889e;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 20px 8vw;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      width: 100vw;
+      box-sizing: border-box;
     }
+    
+    .navbar .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #2d3748;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
     .navbar a {
-      color: #ffffff;
+      color: #4a5568;
       text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      transition: color 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 8px;
+      position: relative;
     }
+    
     .navbar a:hover {
-      color: #ffffff;
-      text-decoration: underline;
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+      transform: translateY(-1px);
     }
-    @media (max-width: 700px) {
-      .navbar {
-        flex-direction: column;
-        padding: 10px 5px;
-      }
-      .navbar a {
-        margin-left: 0;
-        margin-right: 10px;
-        display: inline-block;
-        margin-top: 8px;
-      }
+    
+    .back-btn {
+      display: none;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      color: #4a5568;
+      font-size: 0.95em;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-left: 0;
+      margin-right: 2vw;
+      position: static;
+      white-space: nowrap;
     }
+    
+    .back-btn:hover {
+      background: #edf2f7;
+      color: #2d3748;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+    
     .booking-container {
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 6px 32px rgba(87,74,152,0.13);
-      padding: 32px 28px 24px 28px;
-      max-width: 400px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      padding: 50px 40px 40px 40px;
+      max-width: 520px;
       width: 100%;
-      margin: 32px 0;
+      margin: 120px auto 40px auto;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
+    
     .booking-container h2 {
       text-align: center;
-      color: #42b0b2;
-      margin-bottom: 10px;
-      font-size: 2rem;
+      color: #2d3748;
+      margin: 0 0 10px 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
+    
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-    }
-    label {
-      font-weight: 500;
-      color: #2d3651;
-    }
-    input, select, textarea {
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #bfc9e0;
-      font-size: 1rem;
-      background: #f8fafc;
-      transition: border 0.2s;
-    }
-    input:focus, select:focus, textarea:focus {
-      border: 1.5px solid #42b0b2;
-      outline: none;
-      background: #fff;
-    }
-    .room-options {
-      display: flex;
-      flex-direction: column;
       gap: 8px;
-      margin-top: 4px;
+      margin-bottom: 0;
     }
-    .room-radio {
+    
+    label {
+      font-weight: 600;
+      color: #4a5568;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      letter-spacing: 0.025em;
+    }
+    
+    input, select, textarea {
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      font-size: 1rem;
+      background: #ffffff;
+      transition: all 0.2s ease;
+      margin-top: 0;
+      font-family: inherit;
+      color: #2d3748;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      border: 2px solid #667eea;
+      outline: none;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    textarea {
+      min-height: 100px;
+      max-height: 200px;
+      resize: vertical;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    
+    #extra {
+      min-height: 120px;
+      font-size: 1rem;
+    }
+    
+    #extra::placeholder, textarea::placeholder {
+      color: #a0aec0;
+      font-style: normal;
+      font-size: 1rem;
+      opacity: 1;
+      letter-spacing: 0;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 18px 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 15px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all 0.2s ease;
+      letter-spacing: 0.025em;
+      font-family: inherit;
+    }
+    
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+    
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.875rem;
+      margin-top: 4px;
+      min-height: 16px;
+      line-height: 1.4;
+      font-weight: 500;
+      display: block;
+    }
+    
+    /* Country dropdown styling */
+    .phone-input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .country-dropdown {
+      position: relative;
+      min-width: 100px;
+      user-select: none;
+    }
+    
+    .selected-country {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f7fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .selected-country:hover {
+      border-color: #cbd5e0;
+      background: #edf2f7;
+    }
+    
+    .selected-country .arrow {
+      margin-left: 4px;
+      font-size: 10px;
+      color: #718096;
+    }
+    
+    .country-list {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      width: 220px;
+      max-height: 220px;
+      overflow-y: auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      z-index: 10;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .country-list.open {
+      display: block;
+    }
+    
+    .country-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #e0e7ff;
-      border-radius: 7px;
-      padding: 7px 10px;
+      padding: 12px 14px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.15s;
+      border-bottom: 1px solid #f7fafc;
     }
-    .room-radio input[type="radio"] {
-      accent-color: #42b0b2;
-      width: 18px;
-      height: 18px;
+    
+    .country-item:hover, .country-item.selected {
+      background: #667eea;
+      color: #ffffff;
     }
-    .room-radio.selected {
-      background: #42b0b2;
-      color: #fff;
+    
+    .country-item .flag {
+      font-size: 18px;
     }
-    .price {
-      font-weight: bold;
-      color: #ff5722;
-      margin-left: auto;
-      font-size: 1.1em;
+    
+    /* Room select styling */
+    .room-select-group {
+      position: relative;
     }
-    .submit-btn {
-      background: linear-gradient(90deg, #42b0b2 60%, #6476b8 100%);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 13px 0;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-top: 10px;
+    
+    .room-select-group input {
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(87,74,152,0.10);
-      transition: background 0.2s, transform 0.2s;
+      background: #f7fafc;
     }
-    .submit-btn:hover {
-      background: #56889e;
-      transform: translateY(-2px);
+    
+    .room-select-arrow {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #718096;
+      font-size: 12px;
+      pointer-events: none;
     }
-    @media (max-width: 600px) {
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 4vw;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .navbar .logo {
+        font-size: 1.4em;
+      }
+      
+      .navbar-links {
+        gap: 1rem;
+      }
+      
+      .navbar a {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+      
+      .back-btn {
+        display: inline-block !important;
+        position: static;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 0.9em;
+        z-index: 101;
+        margin-right: 0;
+        vertical-align: middle;
+      }
+      
       .booking-container {
-        padding: 18px 4vw 14px 4vw;
-        max-width: 98vw;
+        margin: 100px auto 30px auto;
+        max-width: 95vw;
+        padding: 30px 25px 25px 25px;
+        border-radius: 16px;
       }
+      
       .booking-container h2 {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
       }
+      
       .submit-btn {
-        font-size: 1rem;
-        padding: 11px 0;
+        font-size: 1.05rem;
+        padding: 16px 0;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .back-btn {
+        display: none !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .booking-container {
+        padding: 25px 20px 20px 20px;
+        margin: 90px auto 20px auto;
+      }
+      
+      .form-group {
+        gap: 6px;
+      }
+      
+      input, select, textarea {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+      }
+      
+      label {
+        font-size: 0.9rem;
+      }
+      
+      .booking-container h2 {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="logo">Al-Xorazmiy Hotel</div><div></div>
-    <a href="index.html" class="back-btn" id="backBtn" aria-label="Orqaga qaytish" style="display:none">← Orqaga</a>
-    <div class="navbar-links" id="navbarLinks">
-      <a href="#info">Ma'lumot</a>
+  <div class="booking-header-box">
+    <div class="logo">Al-Xorazmiy Hotel</div>
+    <div class="booking-nav-links">
+      <a href="index.html">Bosh sahifa</a>
       <a href="#rooms">Xonalar</a>
       <a href="#contact">Aloqa</a>
     </div>
@@ -213,7 +441,7 @@
     </div>
     <div class="form-group">
       <label for="extra">Qo'shimcha ma'lumot</label>
-      <textarea id="extra" name="extra" rows="2" aria-placeholder="Iltimoslaringiz yoki izoh..."></textarea>
+      <textarea id="extra" name="extra" rows="2" placeholder="Iltimoslaringiz yoki izoh..."></textarea>
     </div>
     <button type="submit" class="submit-btn">Band Qilish</button>
   </form>
