@@ -209,6 +209,28 @@
       margin-top: 40px;
     }
     
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+    
+    .gallery-label {
+      background: none;
+      color: #2d3748;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.2px;
+      text-align: left;
+      display: block;
+      border: none;
+      outline: none;
+      cursor: default;
+    }
+    
     .gallery img {
       width: 100%;
       height: 280px;
@@ -461,9 +483,18 @@
   <div class="section" id="rooms">
     <h2>Xonalar Galereyasi</h2>
     <div class="gallery">
-      <img src="lux1.jpg" alt="Pol-lux xona" class="room-img" data-room="1">
-      <img src="stan1.jpg" alt="Standard xona" class="room-img" data-room="2">
-      <img src="zavtrak1.jpg" alt="Ertalabgi nonushta" class="room-img" data-room="3">
+      <div class="gallery-item">
+        <div class="gallery-label">Pol-lux xona</div>
+        <img src="lux1.jpg" alt="Pol-lux xona" class="room-img" data-room="1">
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-label">Standart xona</div>
+        <img src="stan1.jpg" alt="Standard xona" class="room-img" data-room="2">
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-label">Ertalabgi nonushta</div>
+        <img src="zavtrak1.jpg" alt="Ertalabgi nonushta" class="room-img" data-room="3">
+      </div>
     </div>
   </div>
 
@@ -496,12 +527,12 @@
 
   <div class="section" id="contact">
     <h2>Aloqa</h2>
-    <p style="text-align:center; font-size: 1.2rem; color: #4a5568;">Telefon: +998 90 123-45-67 | Email: info@alxorazmiyhotel.uz</p>
-    <p style="text-align:center; font-size: 1.1rem; color: #718096;">Manzil: Xiva, O'zbekiston</p>
+    <p style="text-align:center; font-size: 1.2rem; color: #4a5568;">Telefon: +998 88 208 66 44 | Email: info@alxorazmiyhotel.uz</p>
+    <p style="text-align:center; font-size: 1.1rem; color: #718096;">Manzil: Xorazm viloyati Urganch shahri, Airport yo'li</p>
   </div>
 
   <div class="footer">
-    <p style="font-size: 1.1rem; font-weight: 600;">&copy; 2025 Al-Xorazmiy Mehmonxonasi. Barcha huquqlar himoyalangan.</p>
+    <p style="font-size: 1.1rem; font-weight: 600;">&copy; 2025 Hoffenuz programming. Barcha huquqlar himoyalangan.</p>
   </div>
 
   <script>

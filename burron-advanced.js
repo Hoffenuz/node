@@ -15,7 +15,7 @@ const countries = [
 const rooms = [
   { value: 'pol-lux-1', label: 'Standart (1 kishi)', price: 300000 },
   { value: 'pol-lux-2', label: 'Standart (2 kishi)', price: 600000 },
-  { value: 'standart-1', label: 'Standart (3 kishi)', price: 300000 },
+  { value: 'standart-1', label: 'Standart (3 kishi)', price: 900000 },
   { value: 'standart-2', label: 'POL LUX (1 kishi)', price: 500000 },
   { value: 'standart-2', label: 'POL LUX (2 kishi)', price: 1000000 },
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
       item.classList.add('selected');
       selectedCountry.querySelector('.flag').textContent = c.flag;
       selectedCountry.querySelector('.code').textContent = c.code;
-      phoneInput.placeholder = c.format;
+      setPhoneMask(c.format);
       countryList.classList.remove('open');
       countryDropdown.blur();
     };
@@ -62,6 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const roomModalClose = document.getElementById('roomModalClose');
   let selectedRoomValue = '';
 
+  // Add support for 3-person room fields
+  function updateGuestFields(roomLabel) {
+    const isTwo = /2 kishi|2 kishilik|2 kishi,|2 kishilik/gi.test(roomLabel);
+    const isThree = /3 kishi|3 kishilik|3 kishi,|3 kishilik/gi.test(roomLabel);
+    document.querySelectorAll('.guest2-fields').forEach(f => f.style.display = isTwo || isThree ? 'flex' : 'none');
+    document.querySelectorAll('.guest3-fields').forEach(f => f.style.display = isThree ? 'flex' : 'none');
+  }
+
   function selectRoom(room) {
     selectedRoomValue = room.value;
     roomTypeInput.value = `${room.label} — ${room.price.toLocaleString()} so'm`;
@@ -69,13 +77,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const el = document.getElementById('room-opt-' + room.value);
     if(el) el.classList.add('selected');
     roomModal.classList.remove('open');
-    // Show/hide second guest fields
-    if (room.label.match(/2 kishi|2 kishi|2 kishi|2 kishi|2 kishi|2 kishilik|2 kishi,|2 kishilik|2 kishi/gi)) {
-      document.querySelectorAll('.guest2-fields').forEach(f => f.style.display = 'flex');
-    } else {
-      document.querySelectorAll('.guest2-fields').forEach(f => f.style.display = 'none');
-    }
+    updateGuestFields(room.label);
   }
+
+  // Input mask for phone
+  let lastPhoneMaskHandler = null;
+  function setPhoneMask(format) {
+    phoneInput.value = '';
+    phoneInput.setAttribute('placeholder', format);
+    if (lastPhoneMaskHandler) phoneInput.removeEventListener('input', lastPhoneMaskHandler);
+    function onPhoneInput(e) {
+      let val = phoneInput.value.replace(/\D/g, '');
+      let digitCount = (format.match(/\d/g) || []).length;
+      if (val.length > digitCount) val = val.slice(0, digitCount);
+      let res = '';
+      let vi = 0;
+      for (let i = 0; i < format.length; i++) {
+        if (format[i].match(/\d/)) {
+          if (vi < val.length) {
+            res += val[vi++];
+          } else {
+            break;
+          }
+        } else {
+          if (vi > 0 && vi < val.length + 1) {
+            res += format[i];
+          }
+        }
+      }
+      phoneInput.value = res;
+      phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
+    }
+    phoneInput.addEventListener('input', onPhoneInput);
+    lastPhoneMaskHandler = onPhoneInput;
+  }
+  // Set initial mask for default country
+  setPhoneMask(countries[0].format);
 
   // Populate room modal
   rooms.forEach(room => {
@@ -131,27 +168,61 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     e.preventDefault();
+    // Clear previous errors
+    ['err-name','err-surname','err-phone','err-name2','err-surname2','err-name3','err-surname3'].forEach(id=>{
+      const el=document.getElementById(id); if(el) el.textContent='';
+    });
     // Optionally, you can add the country code to the phone value
     const countryCode = selectedCountry.querySelector('.code').textContent;
     const phoneVal = countryCode + ' ' + phoneInput.value.trim();
     // Validation
     const isTwoPerson = document.querySelector('.guest2-fields').style.display !== 'none';
-    let errors = [];
-    if (!form.name.value.trim()) errors.push('Ism');
-    if (!form.surname.value.trim()) errors.push('Familiya');
-    if (!phoneInput.value.trim()) errors.push('Telefon');
+    const isThreePerson = document.querySelector('.guest3-fields') && document.querySelector('.guest3-fields').style.display !== 'none';
+    let hasError = false;
+    if (!form.name.value.trim()) {
+      document.getElementById('err-name').textContent = 'Ism kiritilmadi';
+      hasError = true;
+    }
+    if (!form.surname.value.trim()) {
+      document.getElementById('err-surname').textContent = 'Familiya kiritilmadi';
+      hasError = true;
+    }
+    // Phone validation
+    const format = phoneInput.getAttribute('placeholder');
+    const digitCount = (format.match(/\d/g) || []).length;
+    if (!phoneInput.value.trim() || phoneInput.value.replace(/\D/g, '').length !== digitCount || phoneInput.value.length !== format.length) {
+      document.getElementById('err-phone').textContent = "Telefon raqam to'liq va to'g'ri formatda kiritilmadi";
+      hasError = true;
+    }
     if (isTwoPerson) {
-      if (!form.name2.value.trim()) errors.push('2-kishi ismi');
-      if (!form.surname2.value.trim()) errors.push('2-kishi familiyasi');
+      if (!form.name2.value.trim()) {
+        document.getElementById('err-name2').textContent = '2-kishi ismi kiritilmadi';
+        hasError = true;
+      }
+      if (!form.surname2.value.trim()) {
+        document.getElementById('err-surname2').textContent = '2-kishi familiyasi kiritilmadi';
+        hasError = true;
+      }
     }
-    if (errors.length > 0) {
-      alert('Quyidagi maydonlarni to‘ldiring: ' + errors.join(', '));
-      return;
+    if (isThreePerson) {
+      if (!form.name3.value.trim()) {
+        document.getElementById('err-name3').textContent = '3-kishi ismi kiritilmadi';
+        hasError = true;
+      }
+      if (!form.surname3.value.trim()) {
+        document.getElementById('err-surname3').textContent = '3-kishi familiyasi kiritilmadi';
+        hasError = true;
+      }
     }
+    if (hasError) return;
     // Prepare data
     const data = {
-      ism: form.name.value.trim() + (form.name2 && form.name2.value ? ' / ' + form.name2.value.trim() : ''),
-      familya: form.surname.value.trim() + (form.surname2 && form.surname2.value ? ' / ' + form.surname2.value.trim() : ''),
+      ism: form.name.value.trim()
+        + (form.name2 && form.name2.value ? ' / ' + form.name2.value.trim() : '')
+        + (form.name3 && form.name3.value ? ' / ' + form.name3.value.trim() : ''),
+      familya: form.surname.value.trim()
+        + (form.surname2 && form.surname2.value ? ' / ' + form.surname2.value.trim() : '')
+        + (form.surname3 && form.surname3.value ? ' / ' + form.surname3.value.trim() : ''),
       telefon: phoneVal,
       xona_turi_narxi: roomTypeInput.value,
       qoshimcha_malumot: form.extra.value.trim()
