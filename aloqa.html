@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aloqa - AL-Xorazmiy Mehmonxonasi</title>
+  <link rel="icon" href="/hotel-icon.jpg" type="image/jpg">
+  <link rel="canonical" href="https://alxorazmiyhotel.uz/aloqa.html" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #2d3748;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #4a5568;
+      font-weight: 600;
+      margin-left: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 60px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #2d3748;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info .box {
+      background: linear-gradient(to right, #f7fafc, #edf2f7);
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .info .box i {
+      font-size: 24px;
+      color: #667eea;
+    }
+
+    .form-section {
+      margin-top: 40px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ccd6f6;
+      border-radius: 6px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #667eea;
+      outline: none;
+    }
+
+    button {
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    }
+
+    .map {
+      margin-top: 40px;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: white;
+      background: rgba(0,0,0,0.2);
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        margin: 20px;
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">AL-Xorazmiy Hotel</div>
+    <div>
+      <a href="index.html">Bosh sahifa</a>
+      <a href="https://www.google.com/maps/place/Al-xorazmiy+Hotel/@41.5713121,60.6297486,77m/data=!3m1!1e3!4m6!3m5!1s0x41dfcf003328032b:0x4cd3a472dd48d8f7!8m2!3d41.5713374!4d60.6298126!16s%2Fg%2F11y8fc5t_s?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D">Manzil</a>
+      <a href="aloqa.html">Aloqa</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Biz bilan bog‘laning</h2>
+
+    <div class="info">
+      <div class="box"><i class="fas fa-map-marker-alt"></i> Manzil: Urganch sh., AL-Xorazmiy ko‘chasi 111/2-uy</div>
+      <div class="box"><i class="fas fa-phone-alt"></i> Telefon: +998 88 208 66 44</div>
+      <div class="box"><i class="fas fa-envelope"></i> Email: AL_Xorazmiyhotel@gmail.com</div>
+      <div class="box"><i class="fas fa-clock"></i> Ish vaqti: 24/7 </div>
+    </div>
+
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4782.638290379543!2d60.62820919999999!3d41.5713374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41dfcf003328032b%3A0x4cd3a472dd48d8f7!2sAl-xorazmiy%20Hotel!5e0!3m2!1sen!2s!4v1720079512345!5m2!1sen!2s"></iframe>
+    </div>
+
+    <div class="form-section">
+      <h2>Xabar yuboring</h2>
+      <form>
+        <input type="text" placeholder="Ismingiz" required />
+        <input type="email" placeholder="Email manzilingiz" required />
+        <textarea rows="5" placeholder="Xabaringizni yozing" required></textarea>
+        <button type="submit">Yuborish</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 AL-Xorazmiy Mehmonxonasi. Barcha huquqlar himoyalangan.
+  </div>
+
+</body>
+</html>
